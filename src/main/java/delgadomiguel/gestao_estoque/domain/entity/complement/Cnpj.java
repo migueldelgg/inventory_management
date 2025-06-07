@@ -1,4 +1,4 @@
-package delgadomiguel.gestao_estoque.domain.entity;
+package delgadomiguel.gestao_estoque.domain.entity.complement;
 
 import delgadomiguel.gestao_estoque.domain.exception.CnpjBadFormatException;
 
@@ -15,7 +15,7 @@ public class Cnpj {
         this.cnpj = cnpj;
     }
 
-    public String getCnpj() {
+    public String get() {
         return cnpj;
     }
 

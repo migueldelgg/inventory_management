@@ -1,5 +1,8 @@
 package delgadomiguel.gestao_estoque.domain.entity;
 
+import delgadomiguel.gestao_estoque.domain.entity.complement.Cnpj;
+import delgadomiguel.gestao_estoque.domain.entity.complement.Email;
+
 public class Supplier {
 
     private String companyName;

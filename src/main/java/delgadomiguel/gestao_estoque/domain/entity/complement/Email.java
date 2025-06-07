@@ -1,4 +1,4 @@
-package delgadomiguel.gestao_estoque.domain.entity;
+package delgadomiguel.gestao_estoque.domain.entity.complement;
 
 import delgadomiguel.gestao_estoque.domain.exception.EmailBadFormat;
 import org.apache.commons.validator.routines.EmailValidator;
@@ -19,7 +19,7 @@ public class Email {
         }
     }
 
-    public String getEmail() {
+    public String get() {
         return email;
     }
 }
