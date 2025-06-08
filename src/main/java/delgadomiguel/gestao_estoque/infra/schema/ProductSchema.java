@@ -33,6 +33,9 @@ public class ProductSchema {
 
     private String category;
 
+    @Column(name = "is_active")
+    private Boolean isActive;
+
     @Column(name = "product_validity")
     private Date productValidity;
 

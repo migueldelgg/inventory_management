@@ -30,6 +30,9 @@ public class SupplierSchema {
     private String phone;
     private String email;
 
+    @Column(name = "is_active")
+    private Boolean isActive;
+
     @Column(name = "main_contact")
     private String mainContact;
 
