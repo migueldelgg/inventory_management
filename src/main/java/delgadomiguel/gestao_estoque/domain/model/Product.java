@@ -1,5 +1,7 @@
 package delgadomiguel.gestao_estoque.domain.model;
 
+import delgadomiguel.gestao_estoque.domain.model.complement.ProductCategory;
+
 import java.util.Date;
 
 public class Product {
@@ -8,7 +10,7 @@ public class Product {
     private String barCode;
     private String description;
     private Integer stockQuantity; // vale a pena se validar
-    private String category; // vale a pena se validar
+    private ProductCategory category; // vale a pena se validar
     private Date productValidity; // vale a pena se validar
     private String imgUrl;
 
@@ -17,7 +19,7 @@ public class Product {
                    String name, Date productValidity,
                    Integer stockQuantity) {
         this.barCode = barCode;
-        this.category = category;
+        this.category = ProductCategory.valueOf(category);
         this.description = description;
         this.imgUrl = imgUrl;
         this.name = name;
