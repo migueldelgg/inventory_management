@@ -1,4 +1,4 @@
-package delgadomiguel.gestao_estoque.domain.entity.complement;
+package delgadomiguel.gestao_estoque.domain.model.complement;
 
 import delgadomiguel.gestao_estoque.domain.exception.CnpjBadFormatException;
 

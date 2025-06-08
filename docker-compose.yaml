@@ -1,0 +1,33 @@
+# Versão do Docker Compose
+version: '3.8'
+
+# Definição dos serviços
+services:
+  # Nome do serviço do banco de dados
+  postgres-db:
+    # Imagem oficial do PostgreSQL. Usar uma tag específica é uma boa prática.
+    image: postgres:16
+
+    # Nome do container para fácil identificação
+    container_name: gestao_estoque_postgres
+
+    # Variáveis de ambiente para configurar o banco de dados
+    # Essas serão as credenciais que sua aplicação usará
+    environment:
+      POSTGRES_DB: gestao_estoque_db
+      POSTGRES_USER: user_estoque
+      POSTGRES_PASSWORD: StrongPassword123
+
+    # Mapeamento de portas: <porta_na_sua_maquina>:<porta_no_container>
+    # Permite que sua aplicação (rodando no Windows) acesse o banco (no container)
+    ports:
+      - "5432:5432"
+
+    # Volume para persistir os dados do banco de dados
+    # Mesmo que o container seja removido, seus dados estarão salvos
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+# Definição dos volumes nomeados para garantir a persistência dos dados
+volumes:
+  postgres_data:

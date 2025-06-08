@@ -1,7 +1,7 @@
-package delgadomiguel.gestao_estoque.domain.entity;
+package delgadomiguel.gestao_estoque.domain.model;
 
-import delgadomiguel.gestao_estoque.domain.entity.complement.Cnpj;
-import delgadomiguel.gestao_estoque.domain.entity.complement.Email;
+import delgadomiguel.gestao_estoque.domain.model.complement.Cnpj;
+import delgadomiguel.gestao_estoque.domain.model.complement.Email;
 
 public class Supplier {
 
