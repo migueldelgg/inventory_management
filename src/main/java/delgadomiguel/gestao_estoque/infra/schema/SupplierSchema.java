@@ -3,6 +3,7 @@ package delgadomiguel.gestao_estoque.infra.schema;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -34,4 +35,23 @@ public class SupplierSchema {
 
     @ManyToMany(mappedBy = "suppliers") // "suppliers" é o nome do campo na classe ProductSchema
     private Set<ProductSchema> products = new HashSet<>();
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at")
+    private Date updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = new Date();
+        updatedAt = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = new Date();
+    }
 }

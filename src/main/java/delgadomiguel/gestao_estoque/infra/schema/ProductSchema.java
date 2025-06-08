@@ -46,4 +46,23 @@ public class ProductSchema {
             inverseJoinColumns = @JoinColumn(name = "supplier_id") // Chave estrangeira para SupplierSchema
     )
     private Set<SupplierSchema> suppliers = new HashSet<>();
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Date createdAt;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "updated_at")
+    private Date updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = new Date();
+        updatedAt = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = new Date();
+    }
 }
