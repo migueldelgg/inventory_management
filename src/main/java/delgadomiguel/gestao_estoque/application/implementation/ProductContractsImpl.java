@@ -1,5 +1,8 @@
 package delgadomiguel.gestao_estoque.application.implementation;
 
+import delgadomiguel.gestao_estoque.application.dto.product.CreateProductDTO;
+import delgadomiguel.gestao_estoque.domain.exception.ProductValidationException;
+import delgadomiguel.gestao_estoque.domain.model.Product;
 import delgadomiguel.gestao_estoque.domain.useCase.ProductContracts;
 import delgadomiguel.gestao_estoque.infra.repository.ProductRepository;
 import delgadomiguel.gestao_estoque.infra.schema.ProductSchema;
@@ -20,8 +23,16 @@ public class ProductContractsImpl implements ProductContracts {
     }
 
     @Override
-    public void register() {
+    public void register(CreateProductDTO productDTO) {
 
+        Product product = productDTO.toDomain();
+
+        if (product.productIsAlreadyExpired()) {
+            throw new ProductValidationException();
+        }
+
+        ProductSchema productSchema = ProductSchema.fromDomain(product);
+        repository.save(productSchema);
     }
 
     @Override

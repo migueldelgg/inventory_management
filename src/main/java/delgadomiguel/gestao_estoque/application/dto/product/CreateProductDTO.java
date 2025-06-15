@@ -1,5 +1,6 @@
 package delgadomiguel.gestao_estoque.application.dto.product;
 
+import delgadomiguel.gestao_estoque.domain.model.Product;
 import delgadomiguel.gestao_estoque.domain.model.complement.ProductCategory;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -22,7 +23,7 @@ public record CreateProductDTO(
         @PositiveOrZero(message = "A quantidade em estoque não pode ser negativa")
         Integer stockQuantity,
 
-        @NotBlank(message = "A categoria do produto é obrigatória")
+        @NotNull(message = "A categoria do produto é obrigatória")
         ProductCategory category,
 
         // Validade é opcional, mas pode ser validada com lógica adicional, se necessário
@@ -31,5 +32,11 @@ public record CreateProductDTO(
         // A imagem é opcional, mas pode ter validação se necessário (como extensão ou tamanho)
         String imgUrl
 
-) {}
+) {
+        public Product toDomain(){
+                return new Product(this.name, this.barCode,
+                        String.valueOf(this.category), this.description,
+                        this.imgUrl, this.productValidity, this.stockQuantity);
+        }
+}
 

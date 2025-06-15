@@ -1,5 +1,6 @@
 package delgadomiguel.gestao_estoque.infra.schema;
 
+import delgadomiguel.gestao_estoque.domain.model.Product;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -68,4 +69,19 @@ public class ProductSchema {
     protected void onUpdate() {
         updatedAt = new Date();
     }
+
+    public static ProductSchema fromDomain(Product product) {
+        ProductSchema schema = new ProductSchema();
+        schema.setName(product.getName());
+        schema.setBarCode(product.getBarCode());
+        schema.setDescription(product.getDescription());
+        schema.setStockQuantity(product.getStockQuantity());
+        schema.setCategory(String.valueOf(product.getCategory()));
+        schema.setIsActive(Boolean.TRUE); // produto nasce ativo
+        schema.setProductValidity(product.getProductValidity().getProductValidity());
+        schema.setImgUrl(product.getImgUrl());
+        schema.setSuppliers(new HashSet<>()); // vazio inicialmente
+        return schema;
+    }
+
 }
