@@ -27,7 +27,7 @@ public class Product {
         this.stockQuantity = stockQuantity;
     }
 
-    public boolean productIsAlreadyExpired(){
+    public boolean IsAlreadyExpired(){
         return this.productValidity.isAlreadyExpired(this.productValidity.getProductValidity());
     }
 

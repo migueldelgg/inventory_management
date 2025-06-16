@@ -18,7 +18,7 @@ public class ProductContractsImpl implements ProductContracts {
     private ProductRepository repository;
 
     @Override
-    public List<ProductSchema> get() {
+    public List<ProductSchema> getAll() {
         return repository.findAll();
     }
 
@@ -27,7 +27,7 @@ public class ProductContractsImpl implements ProductContracts {
 
         Product product = productDTO.toDomain();
 
-        if (product.productIsAlreadyExpired()) {
+        if (product.IsAlreadyExpired()) {
             throw new ProductValidationException();
         }
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ProductContracts {
 
-    public List<ProductSchema> get();
+    public List<ProductSchema> getAll();
     public void register(CreateProductDTO productDTO);
     public void update();
     public void delete();
