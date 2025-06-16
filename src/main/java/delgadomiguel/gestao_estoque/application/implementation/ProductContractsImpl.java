@@ -7,9 +7,12 @@ import delgadomiguel.gestao_estoque.domain.useCase.ProductContracts;
 import delgadomiguel.gestao_estoque.infra.repository.ProductRepository;
 import delgadomiguel.gestao_estoque.infra.schema.ProductSchema;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ProductContractsImpl implements ProductContracts {
@@ -19,7 +22,7 @@ public class ProductContractsImpl implements ProductContracts {
 
     @Override
     public List<ProductSchema> getAll() {
-        return repository.findAll();
+        return repository.findAllByIsActiveTrue();
     }
 
     @Override
@@ -41,7 +44,10 @@ public class ProductContractsImpl implements ProductContracts {
     }
 
     @Override
-    public void delete() {
+    public void deleteById(String id) {
+        ProductSchema product = repository.findById(UUID.fromString(id))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado"));
 
-    }
+        product.setIsActive(false);
+        repository.save(product);    }
 }

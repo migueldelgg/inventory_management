@@ -4,12 +4,13 @@ import delgadomiguel.gestao_estoque.application.dto.product.CreateProductDTO;
 import delgadomiguel.gestao_estoque.infra.schema.ProductSchema;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface ProductContracts {
 
     public List<ProductSchema> getAll();
     public void register(CreateProductDTO productDTO);
     public void update();
-    public void delete();
+    public void deleteById(String id);
 
 }
