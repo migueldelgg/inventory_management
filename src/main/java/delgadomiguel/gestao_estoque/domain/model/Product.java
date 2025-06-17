@@ -1,5 +1,6 @@
 package delgadomiguel.gestao_estoque.domain.model;
 
+import delgadomiguel.gestao_estoque.domain.exception.ProductValidationException;
 import delgadomiguel.gestao_estoque.domain.model.complement.ProductCategory;
 import delgadomiguel.gestao_estoque.domain.model.complement.ProductValidity;
 
@@ -15,11 +16,12 @@ public class Product {
     private ProductValidity productValidity;
     private String imgUrl;
 
-    public Product(String name, String barCode, String category,
+    public Product(String name, String barCode, ProductCategory category,
                    String description, String imgUrl,
                    Date productValidity, Integer stockQuantity) {
+
         this.barCode = barCode;
-        this.category = ProductCategory.valueOf(category);
+        this.category = category; // já vem como enum, sem fazer valueOf
         this.description = description;
         this.imgUrl = imgUrl;
         this.name = name;
@@ -27,8 +29,10 @@ public class Product {
         this.stockQuantity = stockQuantity;
     }
 
-    public boolean IsAlreadyExpired(){
-        return this.productValidity.isAlreadyExpired(this.productValidity.getProductValidity());
+    public void validateExpiration() {
+        if (this.productValidity.isExpired(this.productValidity.getProductValidity())) {
+            throw new ProductValidationException();
+        }
     }
 
     public String getBarCode() {

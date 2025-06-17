@@ -15,7 +15,7 @@ public class ProductValidity {
         return productValidity;
     }
 
-    public boolean isAlreadyExpired(Date productValidity){
+    public boolean isExpired(Date productValidity){
         var limit = Date.from(Instant.now());
 
         if (productValidity.after(limit)) {
