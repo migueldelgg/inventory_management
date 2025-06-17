@@ -76,7 +76,7 @@ public class ProductSchema {
         schema.setBarCode(product.getBarCode());
         schema.setDescription(product.getDescription());
         schema.setStockQuantity(product.getStockQuantity());
-        schema.setCategory(String.valueOf(product.getCategory()));
+        schema.setCategory(String.valueOf(product.getCategory().getLabel()));
         schema.setIsActive(Boolean.TRUE); // produto nasce ativo
         schema.setProductValidity(product.getProductValidity().getProductValidity());
         schema.setImgUrl(product.getImgUrl());
