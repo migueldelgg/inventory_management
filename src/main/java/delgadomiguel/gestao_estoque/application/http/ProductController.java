@@ -1,6 +1,7 @@
 package delgadomiguel.gestao_estoque.application.http;
 
 import delgadomiguel.gestao_estoque.application.dto.product.CreateProductDTO;
+import delgadomiguel.gestao_estoque.application.dto.product.UpdateProductDTO;
 import delgadomiguel.gestao_estoque.domain.useCase.ProductContracts;
 import delgadomiguel.gestao_estoque.infra.schema.ProductSchema;
 import jakarta.validation.Valid;
@@ -23,7 +24,7 @@ public class ProductController {
         this.productContracts = productContracts;
     }
 
-    @PostMapping("/")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void registerProduct(@RequestBody @Valid CreateProductDTO productDTO) {
         productContracts.register(productDTO);
@@ -35,9 +36,15 @@ public class ProductController {
         return productContracts.getAll();
     }
 
-    @DeleteMapping
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteById(@RequestParam String id) {
+    public void updatedProduct(@PathVariable String id, @RequestBody UpdateProductDTO updateProductDTO) {
+        productContracts.update(id, updateProductDTO);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteById(@PathVariable String id) {
         productContracts.deleteById(id);
     }
 }

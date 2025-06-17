@@ -35,7 +35,7 @@ public record CreateProductDTO(
 ) {
         public Product toDomain(){
                 return new Product(this.name, this.barCode,
-                        String.valueOf(this.category), this.description,
+                        this.category, this.description,
                         this.imgUrl, this.productValidity, this.stockQuantity);
         }
 }
