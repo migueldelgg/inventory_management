@@ -23,4 +23,27 @@ public class Supplier {
         this.phone = phone;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public String getCnpj() {
+        return cnpj.getValue();
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public String getEmail() {
+        return email.getValue();
+    }
+
+    public String getMainContact() {
+        return mainContact;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
 }

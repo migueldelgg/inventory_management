@@ -1,5 +1,6 @@
 package delgadomiguel.gestao_estoque.infra.schema;
 
+import delgadomiguel.gestao_estoque.domain.model.Supplier;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,6 +25,7 @@ public class SupplierSchema {
     @Column(name = "company_name")
     private String companyName;
 
+    @Column(unique = true)
     private String cnpj;
 
     private String address;
@@ -56,5 +58,18 @@ public class SupplierSchema {
     @PreUpdate
     protected void onUpdate() {
         updatedAt = new Date();
+    }
+
+    public static SupplierSchema fromDomain(Supplier supplier) {
+        SupplierSchema schema = new SupplierSchema();
+        schema.setCompanyName(supplier.getCompanyName());
+        schema.setCnpj(supplier.getCnpj());
+        schema.setAddress(supplier.getAddress());
+        schema.setPhone(supplier.getPhone());
+        schema.setEmail(supplier.getEmail());
+        schema.setMainContact(supplier.getMainContact());
+        schema.setIsActive(true);
+
+        return schema;
     }
 }

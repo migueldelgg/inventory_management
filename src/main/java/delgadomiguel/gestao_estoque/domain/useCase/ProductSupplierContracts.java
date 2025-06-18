@@ -2,8 +2,11 @@ package delgadomiguel.gestao_estoque.domain.useCase;
 
 public interface ProductSupplierContracts {
 
-    public void associateSupplier();
-    public void disassociateSupplier();
+    public void linkSupplierToProduct();
+    public void unlinkSupplierFromProduct();
+
+    public void getSuppliersFromProduct();
+    public void getProductsFromSupplier();
 
     /*
     POST /products/{productId}/suppliers/{supplierId} → associar

@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.Map;
@@ -67,5 +68,11 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "Unexpected DB error"));
+    }
+
+    @ExceptionHandler(CnpjBadFormatException.class)
+    public ResponseEntity<ProblemDetail> handleCnpjBadFormatException(CnpjBadFormatException ex) {
+        ProblemDetail problem = ex.toProblemDetail();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(problem);
     }
 }

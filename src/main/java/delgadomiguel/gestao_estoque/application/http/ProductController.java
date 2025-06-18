@@ -5,14 +5,10 @@ import delgadomiguel.gestao_estoque.application.dto.product.UpdateProductDTO;
 import delgadomiguel.gestao_estoque.domain.useCase.ProductContracts;
 import delgadomiguel.gestao_estoque.infra.schema.ProductSchema;
 import jakarta.validation.Valid;
-import jakarta.websocket.server.PathParam;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/product")

@@ -9,13 +9,13 @@ public class Cnpj {
     private String cnpj;
 
     public Cnpj(String cnpj) {
-        if(!isCnpj(cnpj)){
+        if (!isCnpj(cnpj)) {
             throw new CnpjBadFormatException();
         }
         this.cnpj = cnpj;
     }
 
-    public String get() {
+    public String getValue() {
         return cnpj;
     }
 
