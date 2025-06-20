@@ -1,5 +1,6 @@
 package delgadomiguel.gestao_estoque.infra.schema;
 
+import delgadomiguel.gestao_estoque.application.implementation.utils.ProductCategoryParser;
 import delgadomiguel.gestao_estoque.domain.model.Product;
 import jakarta.persistence.*;
 import lombok.*;
@@ -82,6 +83,28 @@ public class ProductSchema {
         schema.setImgUrl(product.getImgUrl());
         schema.setSuppliers(new HashSet<>()); // vazio inicialmente
         return schema;
+    }
+
+    public Product toDomain() {
+        return new Product(
+                this.name,
+                this.barCode,
+                ProductCategoryParser.executeParseCategory(this.category),
+                this.description,
+                this.imgUrl,
+                this.productValidity,
+                this.stockQuantity
+        );
+    }
+
+    public void updateFromDomain(Product product) {
+        this.name = product.getName();
+        this.barCode = product.getBarCode();
+        this.description = product.getDescription();
+        this.category = product.getCategory().getLabel();
+        this.productValidity = product.getProductValidity().getValue();
+        this.imgUrl = product.getImgUrl();
+        this.stockQuantity = product.getStockQuantity();
     }
 
 }

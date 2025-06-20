@@ -5,7 +5,7 @@ import delgadomiguel.gestao_estoque.domain.model.Product;
 import java.util.Date;
 import java.util.Optional;
 
-import static delgadomiguel.gestao_estoque.application.implementation.ProductCategoryParser.executeParseCategory;
+import static delgadomiguel.gestao_estoque.application.implementation.utils.ProductCategoryParser.executeParseCategory;
 
 public record UpdateProductDTO(
 

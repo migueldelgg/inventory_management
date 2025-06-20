@@ -1,4 +1,4 @@
-package delgadomiguel.gestao_estoque.application.implementation;
+package delgadomiguel.gestao_estoque.application.implementation.utils;
 
 import delgadomiguel.gestao_estoque.domain.model.complement.ProductCategory;
 

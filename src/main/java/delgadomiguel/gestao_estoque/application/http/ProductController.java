@@ -1,6 +1,7 @@
 package delgadomiguel.gestao_estoque.application.http;
 
 import delgadomiguel.gestao_estoque.application.dto.product.CreateProductDTO;
+import delgadomiguel.gestao_estoque.application.dto.product.ProductGetAllDTO;
 import delgadomiguel.gestao_estoque.application.dto.product.UpdateProductDTO;
 import delgadomiguel.gestao_estoque.domain.useCase.ProductContracts;
 import delgadomiguel.gestao_estoque.infra.schema.ProductSchema;
@@ -28,7 +29,7 @@ public class ProductController {
 
     @GetMapping("/")
     @ResponseStatus(HttpStatus.OK)
-    public List<ProductSchema> getAll() {
+    public List<ProductGetAllDTO> getAll() {
         return productContracts.getAll();
     }
 
