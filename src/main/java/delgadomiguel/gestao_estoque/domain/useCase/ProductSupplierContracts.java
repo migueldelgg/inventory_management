@@ -1,9 +1,11 @@
 package delgadomiguel.gestao_estoque.domain.useCase;
 
+import delgadomiguel.gestao_estoque.application.dto.product.LinkSupplierToProductResDTO;
+
 public interface ProductSupplierContracts {
 
-    public void linkSupplierToProduct();
-    public void unlinkSupplierFromProduct();
+    public LinkSupplierToProductResDTO linkSupplierToProduct(String productId, String supplierId);
+    public void unlinkSupplierFromProduct(String productId, String supplierId);
 
     public void getSuppliersFromProduct();
     public void getProductsFromSupplier();

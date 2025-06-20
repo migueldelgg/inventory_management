@@ -71,6 +71,7 @@ public class ProductSchema {
         updatedAt = new Date();
     }
 
+    // Usar somente na Criacao
     public static ProductSchema fromDomain(Product product) {
         ProductSchema schema = new ProductSchema();
         schema.setName(product.getName());

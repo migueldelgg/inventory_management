@@ -3,6 +3,7 @@ package delgadomiguel.gestao_estoque.application.implementation;
 import delgadomiguel.gestao_estoque.application.dto.product.CreateProductDTO;
 import delgadomiguel.gestao_estoque.application.dto.product.ProductGetAllDTO;
 import delgadomiguel.gestao_estoque.application.dto.product.UpdateProductDTO;
+import delgadomiguel.gestao_estoque.application.mappers.ProductMapper;
 import delgadomiguel.gestao_estoque.domain.exception.ProductValidationException;
 import delgadomiguel.gestao_estoque.domain.model.Product;
 import delgadomiguel.gestao_estoque.domain.model.complement.ProductValidity;
@@ -18,8 +19,6 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-
-import static delgadomiguel.gestao_estoque.application.implementation.utils.ProductCategoryParser.executeParseCategory;
 
 @Service
 public class ProductContractsImpl implements ProductContracts {
@@ -51,10 +50,11 @@ public class ProductContractsImpl implements ProductContracts {
         ProductSchema schema = repository.findById(UUID.fromString(id))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado"));
 
-        Product domain = dto.toDomain(schema.toDomain());
-        domain.validateExpiration();
+        Product original = ProductMapper.toDomain(schema);         // 1. schema → domínio (original)
+        Product atualizado = dto.toDomain(original);               // 2. aplica DTO → domínio atualizado
+        atualizado.validateExpiration();                           // 3. valida
 
-        schema.updateFromDomain(domain);
+        schema.updateFromDomain(atualizado);                       // 4. domínio atualizado → schema
     }
 
     @Override
