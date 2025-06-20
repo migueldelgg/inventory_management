@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/products")
 public class ProductSupplierController {
 
     private final ProductSupplierContracts productSupplierContracts;
@@ -15,7 +15,7 @@ public class ProductSupplierController {
         this.productSupplierContracts = productSupplierContracts;
     }
 
-    @PostMapping("/{productId}/supplier/{supplierId}")
+    @PostMapping("/{productId}/suppliers/{supplierId}")
     @ResponseStatus(HttpStatus.OK)
     public ProductAndSuppliersDTO linkSupplierToProduct(
             @PathVariable String productId,
@@ -24,7 +24,7 @@ public class ProductSupplierController {
         return productSupplierContracts.linkSupplierToProduct(productId, supplierId);
     }
 
-    @DeleteMapping("/{productId}/supplier/{supplierId}")
+    @DeleteMapping("/{productId}/suppliers/{supplierId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void unlinkSupplierFromProduct(
             @PathVariable String productId,
