@@ -11,7 +11,7 @@ public class ProductValidity {
         this.productValidity = productValidity;
     }
 
-    public Date getProductValidity() {
+    public Date getValue() {
         return productValidity;
     }
 

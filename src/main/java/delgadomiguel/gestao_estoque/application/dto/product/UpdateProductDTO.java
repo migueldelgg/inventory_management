@@ -31,7 +31,7 @@ public record UpdateProductDTO(
                         category.map(categoryToParse -> executeParseCategory(categoryToParse)).orElse(original.getCategory()),
                         description.orElse(original.getDescription()),
                         imgUrl.orElse(original.getImgUrl()),
-                        productValidity.orElse(original.getProductValidity().getProductValidity()),
+                        productValidity.orElse(original.getProductValidity().getValue()),
                         stockQuantity.orElse(original.getStockQuantity())
                 );
         }

@@ -1,7 +1,9 @@
 package delgadomiguel.gestao_estoque.application.http;
 
+import delgadomiguel.gestao_estoque.application.dto.product.UpdateProductDTO;
 import delgadomiguel.gestao_estoque.application.dto.supplier.CreateSupplierDTO;
 import delgadomiguel.gestao_estoque.application.dto.supplier.SupplierGetAllDTO;
+import delgadomiguel.gestao_estoque.application.dto.supplier.UpdateSupplierDTO;
 import delgadomiguel.gestao_estoque.domain.useCase.SupplierContracts;
 import delgadomiguel.gestao_estoque.infra.schema.SupplierSchema;
 import jakarta.validation.Valid;
@@ -37,5 +39,11 @@ public class SupplierController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable String id) {
         supplierContracts.deleteById(id);
+    }
+
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updatedProduct(@PathVariable String id, @RequestBody UpdateSupplierDTO supplierDTO) {
+        supplierContracts.update(id, supplierDTO);
     }
 }

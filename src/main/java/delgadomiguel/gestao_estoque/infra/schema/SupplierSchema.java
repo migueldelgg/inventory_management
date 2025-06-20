@@ -72,4 +72,15 @@ public class SupplierSchema {
 
         return schema;
     }
+
+    public Supplier toDomain() {
+        return new Supplier(
+                this.address,
+                this.cnpj,
+                this.companyName,
+                this.email,
+                this.mainContact,
+                this.phone
+        );
+    }
 }

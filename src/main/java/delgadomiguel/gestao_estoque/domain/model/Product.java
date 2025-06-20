@@ -30,7 +30,7 @@ public class Product {
     }
 
     public void validateExpiration() {
-        if (this.productValidity.isExpired(this.productValidity.getProductValidity())) {
+        if (this.productValidity.isExpired(this.productValidity.getValue())) {
             throw new ProductValidationException();
         }
     }
