@@ -1,6 +1,5 @@
 package delgadomiguel.gestao_estoque.application.http;
 
-import delgadomiguel.gestao_estoque.application.dto.product.UpdateProductDTO;
 import delgadomiguel.gestao_estoque.application.dto.supplier.CreateSupplierDTO;
 import delgadomiguel.gestao_estoque.application.dto.supplier.SupplierGetAllDTO;
 import delgadomiguel.gestao_estoque.application.dto.supplier.UpdateSupplierDTO;

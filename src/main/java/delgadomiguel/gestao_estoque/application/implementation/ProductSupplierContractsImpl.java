@@ -1,6 +1,7 @@
 package delgadomiguel.gestao_estoque.application.implementation;
 
-import delgadomiguel.gestao_estoque.application.dto.product.LinkSupplierToProductResDTO;
+import delgadomiguel.gestao_estoque.application.dto.ProductAndSuppliersDTO;
+import delgadomiguel.gestao_estoque.application.dto.SupplierAndProductsDTO;
 import delgadomiguel.gestao_estoque.domain.useCase.ProductSupplierContracts;
 import delgadomiguel.gestao_estoque.infra.repository.ProductRepository;
 import delgadomiguel.gestao_estoque.infra.repository.SupplierRepository;
@@ -25,7 +26,7 @@ public class ProductSupplierContractsImpl implements ProductSupplierContracts {
     }
 
     @Override
-    public LinkSupplierToProductResDTO linkSupplierToProduct(String productId, String supplierId) {
+    public ProductAndSuppliersDTO linkSupplierToProduct(String productId, String supplierId) {
 
         ProductSchema product = productRepository.findById(UUID.fromString(productId))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado"));
@@ -39,7 +40,7 @@ public class ProductSupplierContractsImpl implements ProductSupplierContracts {
         productRepository.save(product);
         supplierRepository.save(supplier);
 
-        return LinkSupplierToProductResDTO.fromSchema(product);
+        return ProductAndSuppliersDTO.fromSchema(product);
     }
 
     @Override
@@ -59,12 +60,18 @@ public class ProductSupplierContractsImpl implements ProductSupplierContracts {
     }
 
     @Override
-    public void getSuppliersFromProduct() {
+    public ProductAndSuppliersDTO getSuppliersFromProductId(String productId) {
+        ProductSchema product = productRepository.findById(UUID.fromString(productId))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado"));
 
+        return ProductAndSuppliersDTO.fromSchema(product);
     }
 
     @Override
-    public void getProductsFromSupplier() {
+    public SupplierAndProductsDTO getProductsFromSupplierId(String supplierId) {
+        SupplierSchema supplier = supplierRepository.findById(UUID.fromString(supplierId))
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Fornecedor não encontrado"));
 
+        return SupplierAndProductsDTO.fromSchema(supplier);
     }
 }
