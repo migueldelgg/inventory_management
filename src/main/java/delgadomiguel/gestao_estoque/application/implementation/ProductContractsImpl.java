@@ -28,7 +28,7 @@ public class ProductContractsImpl implements ProductContracts {
 
     @Override
     public List<ProductGetAllDTO> getAll() {
-        return repository.findAllByIsActiveTrue()
+        return repository.findAll()
                 .stream()
                 .map(ProductGetAllDTO::fromSchema)
                 .toList();

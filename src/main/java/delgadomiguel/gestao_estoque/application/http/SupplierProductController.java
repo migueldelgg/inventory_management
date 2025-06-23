@@ -21,4 +21,10 @@ public class SupplierProductController {
         return productSupplierContracts.getProductsFromSupplierId(supplierId);
     }
 
+    @GetMapping("/products")
+    @ResponseStatus(HttpStatus.OK)
+    public SupplierAndProductsDTO getProductsAssociatesSupplier(@PathVariable String supplierId) {
+        return productSupplierContracts.getProductsFromSupplierId(supplierId);
+    }
+
 }

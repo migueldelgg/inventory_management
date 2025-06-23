@@ -1,7 +1,9 @@
 package delgadomiguel.gestao_estoque.application.implementation;
 
 import delgadomiguel.gestao_estoque.application.dto.ProductAndSuppliersDTO;
+import delgadomiguel.gestao_estoque.application.dto.ProductWithSuppliersDTO;
 import delgadomiguel.gestao_estoque.application.dto.SupplierAndProductsDTO;
+import delgadomiguel.gestao_estoque.application.dto.SupplierBasicDTO;
 import delgadomiguel.gestao_estoque.domain.useCase.ProductSupplierContracts;
 import delgadomiguel.gestao_estoque.infra.repository.ProductRepository;
 import delgadomiguel.gestao_estoque.infra.repository.SupplierRepository;
@@ -11,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -73,5 +76,16 @@ public class ProductSupplierContractsImpl implements ProductSupplierContracts {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Fornecedor não encontrado"));
 
         return SupplierAndProductsDTO.fromSchema(supplier);
+    }
+
+    @Override
+    public List<ProductWithSuppliersDTO> getAllProductsWithSuppliers() {
+        var products = productRepository.findAllWithSuppliers();
+
+        List<ProductWithSuppliersDTO> response = products.stream()
+                .map(ProductWithSuppliersDTO::fromEntity)
+                .toList();
+
+        return response;
     }
 }

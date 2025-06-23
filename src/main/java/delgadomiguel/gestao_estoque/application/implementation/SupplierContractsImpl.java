@@ -26,7 +26,7 @@ public class SupplierContractsImpl implements SupplierContracts {
 
     @Override
     public List<SupplierGetAllDTO> get() {
-        return repository.findAllByIsActiveTrue()
+        return repository.findAll()
                 .stream()
                 .map(SupplierGetAllDTO::fromSchema)
                 .toList();

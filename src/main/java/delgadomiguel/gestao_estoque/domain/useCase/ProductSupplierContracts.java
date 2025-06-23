@@ -1,7 +1,10 @@
 package delgadomiguel.gestao_estoque.domain.useCase;
 
 import delgadomiguel.gestao_estoque.application.dto.ProductAndSuppliersDTO;
+import delgadomiguel.gestao_estoque.application.dto.ProductWithSuppliersDTO;
 import delgadomiguel.gestao_estoque.application.dto.SupplierAndProductsDTO;
+
+import java.util.List;
 
 public interface ProductSupplierContracts {
 
@@ -10,6 +13,9 @@ public interface ProductSupplierContracts {
 
     public ProductAndSuppliersDTO getSuppliersFromProductId(String productId);
     public SupplierAndProductsDTO getProductsFromSupplierId(String supplierId);
+
+    public List<ProductWithSuppliersDTO> getAllProductsWithSuppliers();
+
 
     /*
     POST /products/{productId}/suppliers/{supplierId} → associar
